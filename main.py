@@ -11,7 +11,7 @@ class ShowSimilarity(object):
 		self.__load_data()
 
 	def __load_data(self):
-		self.__show_data = pickle.load(open('F:/imdb/shows_data.pickle', 'rb'))
+		self.__show_data = pickle.load(open('shows_data.pickle', 'rb'))
 		print('Loaded book data.')
 		cv = CountVectorizer()
 		count_matrix = cv.fit_transform(self.__show_data['soup'])
