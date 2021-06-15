@@ -1,10 +1,8 @@
 Flask==1.1.2
 Jinja2==2.11.3
 MarkupSafe==1.1.1
-nltk==3.6.1
 numpy==1.20.1
 pandas==1.2.4
-rake-nltk==1.0.4
 regex==2021.4.4
 scikit-learn==0.24.1
 scipy==1.6.2
