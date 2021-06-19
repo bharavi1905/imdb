@@ -15,9 +15,9 @@ class ShowSimilarity(object):
 		#self.__show_data = pickle.load(open('shows_data_filtered.pickle', 'rb'))
 		self.__show_data = pd.read_csv('shows_6000.csv')
 		print('Loaded book data.')
-		cv = CountVectorizer()
+		cv = CountVectorizer(dtype=np.float32)
 		count_matrix = cv.fit_transform(self.__show_data['soup'])
-		self.__cos_sim = cosine_similarity(count_matrix, count_matrix)
+		self.__cos_sim = cosine_similarity(count_matrix, count_matrix).astype('float16')
 		self.__title_to_idx = pd.Series(self.__show_data.index, index=self.__show_data['title']) # title -> idx mapping
 		print('Loaded cosine similarity matrix.')
 
