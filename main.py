@@ -8,33 +8,33 @@ import json, requests
 
 class ShowSimilarity(object):
 	def __init__(self):
-		self.__load_data()
+		self.load_data()
 
-	def __load_data(self):
+	def load_data(self):
 		#self.__show_data = pickle.load(open('shows_data_filtered.pickle', 'rb'))
-		self.__show_data = pd.read_csv('shows_compressed.csv')
+		self.show_data = pd.read_csv('shows_compressed.csv')
 		print('Loaded book data.')
 		cv = CountVectorizer()
-		count_matrix = cv.fit_transform(self.__show_data['soup'])
+		count_matrix = cv.fit_transform(self.show_data['soup'])
 		print(type(count_matrix))
-		self.__cos_sim = cosine_similarity(count_matrix, count_matrix)
-		print(type(self.__cos_sim))
-		self.__title_to_idx = pd.Series(self.__show_data.index, index=self.__show_data['title']) # title -> idx mapping
+		self.cos_sim = cosine_similarity(count_matrix, count_matrix)
+		print(type(self.cos_sim))
+		self.title_to_idx = pd.Series(self.show_data.index, index=self.show_data['title']) # title -> idx mapping
 		print('Loaded cosine similarity matrix.')
 
 	def search(self, query):
-		return self.__show_data.loc[self.__show_data['title'].str.contains(query, case=False)]
+		return self.show_data.loc[self.show_data['title'].str.contains(query, case=False)]
 
 	def recommend(self, title):
-		if title not in self.__title_to_idx:
+		if title not in self.title_to_idx:
 			print('Title not found in index mapping.')
 			return None
 
 		# Get the index of the passed in book's title.
-		show_idx = self.__title_to_idx[title]
+		show_idx = self.title_to_idx[title]
 
 		# Get scores from the cosine similarity matrix for this index.
-		scores = pd.Series(self.__cos_sim[show_idx]).sort_values(ascending=False)
+		scores = pd.Series(self.cos_sim[show_idx]).sort_values(ascending=False)
 		# Get the indices of the top 10 books (sub the first as it's the input book).
 		indices = list(scores.iloc[:11].index)
 
