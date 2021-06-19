@@ -16,7 +16,9 @@ class ShowSimilarity(object):
 		print('Loaded book data.')
 		cv = CountVectorizer()
 		count_matrix = cv.fit_transform(self.__show_data['soup'])
+		print(type(count_matrix))
 		self.__cos_sim = cosine_similarity(count_matrix, count_matrix)
+		print(type(self.__cos_sim))
 		self.__title_to_idx = pd.Series(self.__show_data.index, index=self.__show_data['title']) # title -> idx mapping
 		print('Loaded cosine similarity matrix.')
 
