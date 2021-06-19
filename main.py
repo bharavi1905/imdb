@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 #global data
 def create_similarity():
-    data = pd.read_csv('shows_compressed.csv')
+    data = pd.read_csv('shows_dlg.csv')
     print('Loaded book data')
     cv = CountVectorizer()
     count_matrix = cv.fit_transform(data['soup'])
@@ -21,7 +21,7 @@ def create_similarity():
 
 
 def search_title(query):
-    data = pd.read_csv('shows_compressed.csv')
+    data = pd.read_csv('shows_dlg.csv')
     return data.loc[data['title'].str.contains(query, case=False)]
 
 
