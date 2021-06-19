@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import flask
+import flask, pickle
 
 import json, requests
 from sklearn.feature_extraction.text import CountVectorizer
@@ -12,8 +12,8 @@ class ShowSimilarity(object):
 		self.__load_data()
 
 	def __load_data(self):
-		#self.__show_data = pickle.load(open('shows_data_filtered.pickle', 'rb'))
-		self.__show_data = pd.read_csv('shows_6000.csv')
+		self.__show_data = pickle.load(open('shows_6000.pickle', 'rb'))
+		#self.__show_data = pd.read_csv('shows_6000.csv')
 		print('Loaded book data.')
 		cv = CountVectorizer(dtype=np.float32)
 		count_matrix = cv.fit_transform(self.__show_data['soup'])
