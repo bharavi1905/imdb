@@ -14,7 +14,7 @@ def create_similarity():
     count_matrix = cv.fit_transform(data['soup'])
     print('count')
     # create a similarity score matrix
-    similarity = cosine_similarity(count_matrix)
+    similarity = cosine_similarity(count_matrix).astype('float16')
     print('sim')
     title_to_idx = pd.Series(data.index, index=data['title'])
     print('title')
