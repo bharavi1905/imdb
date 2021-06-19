@@ -10,7 +10,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 def create_similarity():
     data = pd.read_csv('shows_dlg.csv')
     print('Loaded book data')
-    cv = CountVectorizer()
+    cv = CountVectorizer(dtype=np.float32)
     count_matrix = cv.fit_transform(data['soup'])
     print('count')
     # create a similarity score matrix
