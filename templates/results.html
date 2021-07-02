@@ -1,4 +1,7 @@
 <br>
+{% if t=='s' %}
+<h5>Please kindly check if spelling is correct or else no such TVshow in database</h5>
+{% else %}
 <h5>You may also like,</h5>
 <hr>
 <div class = "recommendations">
@@ -31,24 +34,4 @@
 {% endfor %}
 </ul>
 </div>
-
-<!--
-<div class="table-responsive">
-	<table class="table table-hover">
-		<thead class="thead-light">
-			<tr>
-				<th scope="col">Title</th>
-				<th scope="col">URL</th>
-			</tr>	
-		</thead>
-		<tbody>
-			{% for book in recommendations %}
-			<tr id = "bookCard">
-				<td> {{book['title']}}</td>
-				<td><a href="{{ book['url'] }}" target="_blank">GoodReads page</a></td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
--->
+{% endif %}
